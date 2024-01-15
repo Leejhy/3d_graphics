@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 22:31:23 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/15 22:32:36 by junhylee         ###   ########.fr       */
+/*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
+/*   Updated: 2024/01/15 22:33:02 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FDF_H
+# define FDF_H
 
-int	main(int argc, char **argv)
-{
-	
-}
+# include <math.h>
+# include "./libmlx/mlx.h"
+
+//euler.c
+void	euler_x(float *old_y, float *old_z, double angle);
+void	euler_y(float *old_x, float *old_z, double angle);
+void	euler_z(float *old_x, float *old_y, double angle);
+#endif

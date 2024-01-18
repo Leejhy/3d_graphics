@@ -1,16 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   filecheck.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 21:35:57 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/17 22:12:54 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:03:56 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int	ft_strncmp(char *s1, char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (n <= 0)
+		return (0);
+	while ((s1[i] && s2[i]) && i + 1 < n)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
 
 size_t	ft_word_cnt(char *str, char sep)
 {
@@ -75,7 +91,7 @@ void	ft_split(char *str)
 	i = 0;
 	word_cnt = ft_word_cnt(str, '.');
 	if (word_cnt == 0)
-		error();
+		file_error();
 	strings = malloc(sizeof(char *) * (word_cnt + 1));
 	if (!strings)
 		malloc_failed();
@@ -90,8 +106,7 @@ void	ft_split(char *str)
 		i++;
 	}
 	strings[i] = NULL;
-	if (ft_strncmp(strings[i - 1], "fdf", 4) != 0)
-		error();
+	if (ft_strncmp(strings[i - 1], "fdf", 4) != 0)//무조건 1개 이상이니까 괜찮
+		file_error();
 	split_frees(strings);
-	// return (strings);
 }

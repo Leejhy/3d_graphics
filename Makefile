@@ -2,7 +2,8 @@ CC = cc
 # CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 INC = fdf.h
-SRCS = fdf.c
+SRCS =	fdf.c parsing.c file_check.c readmap.c fdf_utils.c error.c \
+		./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = fdf
 

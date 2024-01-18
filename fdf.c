@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:31:23 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/17 21:28:15 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:57:51 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,25 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*win;
-	char	**map;
-	t_data	img;
+	// void	*mlx;
+	// void	*win;
+	char	*map;
+	// t_data	img;
 
 	if (argc != 2)
 		args_error();
-	map = parsing(argv[1]);
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 500, 500, "plz");
-	img.img = mlx_new_image(mlx, 500, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-								&img.line_length, &img.endian);
-	for (int i = 0; i < 250; i++)
-	{
-		my_mlx_pixel_put(&img, i, 0, create_trgb(0,255,0,0));
-		my_mlx_pixel_put(&img, 0, i, create_trgb(0,255,0,0));
-		my_mlx_pixel_put(&img, i, i, create_trgb(0,255,0,0));
-	}
-	mlx_put_image_to_window(mlx, win, img.img, 0, 0);
-	mlx_loop(mlx);
+	map = parsing(argv[1]);//free 해줘야함
+	// mlx = mlx_init();
+	// win = mlx_new_window(mlx, 500, 500, "plz");
+	// img.img = mlx_new_image(mlx, 500, 500);
+	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
+	// 							&img.line_length, &img.endian);
+	// for (int i = 0; i < 250; i++)
+	// {
+	// 	my_mlx_pixel_put(&img, i, 0, create_trgb(0,255,0,0));
+	// 	my_mlx_pixel_put(&img, 0, i, create_trgb(0,255,0,0));
+	// 	my_mlx_pixel_put(&img, i, i, create_trgb(0,255,0,0));
+	// }
+	// mlx_put_image_to_window(mlx, win, img.img, 0, 0);
+	// mlx_loop(mlx);
 }

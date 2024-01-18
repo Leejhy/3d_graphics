@@ -1,41 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   readmap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/17 21:25:06 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 18:32:50 by junhylee         ###   ########.fr       */
+/*   Created: 2024/01/18 18:23:29 by junhylee          #+#    #+#             */
+/*   Updated: 2024/01/18 20:53:41 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_error(int err)
+char	*read_map(int fd)
 {
-	char	*str;
+	char	*one_line;
 
-	str = strerror(err);
-	write(2, str, ft_strlen(str));
-	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
-}
-
-void	args_error(void)
-{
-	write(2, "invalid number of arguments\n", 28);
-	exit(EXIT_FAILURE);
-}
-
-void	malloc_failed(void)
-{
-	write(2, "malloc failed\n", 14);
-	exit(EXIT_FAILURE);
-}
-
-void	file_error(void)
-{
-	write(2, "invalid file format\n", 20);
-	exit(EXIT_FAILURE);
+	one_line = get_next_line(fd);
+	return (one_line);
 }

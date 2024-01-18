@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 20:53:07 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:15:17 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	euler_y(float *old_x, float *old_z, double angle);
 void	euler_z(float *old_x, float *old_y, double angle);
 //parsing.c
 void	simple_check(char *str);
-char	*parsing(char *file_name);
-// char	**parsing(char *file_name);
+int		ft_line_cnt(char *file_name);
+char	**parsing(char *file_name);
 //read_map.c
-char	*read_map(int fd);
+char	**read_map(int fd);
 //filecheck.c
 int		ft_strncmp(char *s1, char *s2, size_t n);
 size_t	ft_word_cnt(char *str, char sep);
@@ -46,4 +46,5 @@ void	ft_error(int err);
 void	args_error(void);
 void	malloc_failed(void);
 void	file_error(void);
+void	read_error(void);
 #endif

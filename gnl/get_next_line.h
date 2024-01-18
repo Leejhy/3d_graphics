@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 15:32:41 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 20:52:20 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:01:55 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 100
 
 typedef struct s_list
 {

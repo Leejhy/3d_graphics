@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 21:25:06 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 18:32:50 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:03:23 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,11 @@ void	malloc_failed(void)
 void	file_error(void)
 {
 	write(2, "invalid file format\n", 20);
+	exit(EXIT_FAILURE);
+}
+
+void	read_error(void)
+{
+	write(2, "map read error\n", 15);
 	exit(EXIT_FAILURE);
 }

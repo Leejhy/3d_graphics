@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/17 21:26:48 by junhylee         ###   ########.fr       */
+/*   Created: 2024/01/17 21:24:20 by junhylee          #+#    #+#             */
+/*   Updated: 2024/01/17 22:14:24 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-# include <math.h>
-# include "mlx.h"
+char	*parsing(char *file_name)
+{
+	int	fd;
+	// char	**split_str;
 
-//euler.c
-void	euler_x(float *old_y, float *old_z, double angle);
-void	euler_y(float *old_x, float *old_z, double angle);
-void	euler_z(float *old_x, float *old_y, double angle);
-#endif
+	if (*file_name == '\0')
+		error();//
+	// split_str = ft_split(file_name);
+	ft_split(file_name);//여기 안에서 에러처리됨 다음줄이 실행되면 무조건 에러 아닌것
+	fd = open(file_name, O_RDWR);
+	//read부분~
+}
+

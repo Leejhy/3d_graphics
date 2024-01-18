@@ -2,17 +2,17 @@ CC = cc
 # CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror
 INC = fdf.h
-SRCS = 
+SRCS = fdf.c
 OBJS = ${SRCS:.c=.o}
-NAME = pipex
+NAME = fdf
 
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(INC)
-	$(CC) $(OBJS) -LlibLmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o : %.c $(INC)
-	$(CC) $(CFLAGS) -Imlx $< -o $@
+	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean :
 	rm -f $(OBJS)

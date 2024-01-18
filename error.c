@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/17 21:26:48 by junhylee         ###   ########.fr       */
+/*   Created: 2024/01/17 21:25:06 by junhylee          #+#    #+#             */
+/*   Updated: 2024/01/17 21:41:30 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-# include <math.h>
-# include "mlx.h"
+void	args_error(void)
+{
+	write(2, "invalid number of arguments\n", 28);
+	exit(EXIT_FAILURE);
+}
 
-//euler.c
-void	euler_x(float *old_y, float *old_z, double angle);
-void	euler_y(float *old_x, float *old_z, double angle);
-void	euler_z(float *old_x, float *old_y, double angle);
-#endif
+void	malloc_failed(void)
+{
+	write(2, "malloc failed\n", 14);
+	exit(EXIT_FAILURE);
+}

@@ -34,7 +34,7 @@ long long	ft_atoll(const char *str)
 	}
 	if (*str != ' ')//100-1 이런거막아줌
 	{
-		if (*str == '\0' || *str == '\n')
+		if (*str == '\0' || *str == '\n' || *str == 13)//13이거 뺴야됨 윈도우라서 CR때매
 			return (sign * result);
 		map_error();
 	}
@@ -70,9 +70,12 @@ char	**get_map(int fd, int line_cnt)
 	return (map);
 }
 
-int	**make_coordinate(char **map, int x_cnt, int y_cnt)
+int	**make_coordinate(int x_cnt, int y_cnt)
 {
+	int	**coor;
 	int	i;
+
+	i = 0;
 	coor = malloc(sizeof(int *) * (y_cnt + 1));
 	if (!coor)
 		malloc_failed();
@@ -89,32 +92,34 @@ int	**make_coordinate(char **map, int x_cnt, int y_cnt)
 
 int	**map_to_coordinate(char **map, int x_cnt, int y_cnt)
 {
-	char	*tmp_line;
-	int	**coor;
-	int	i;
-	int	j;
+	long long	nb;
+	char		*tmp_line;
+	int			**coor;
+	int			i;
+	int			j;
 
 	i = 0;
-	j = 0;
-	coor = make_coordinate(map, x_cnt, y_cnt);
+	coor = make_coordinate(x_cnt, y_cnt);
 	while (i < y_cnt)
 	{
 		tmp_line = map[i];
+		j = 0;
 		while (*tmp_line && *tmp_line != '\n')
 		{
 			while (*tmp_line && *tmp_line == ' ')
 				tmp_line++;
 			if (*tmp_line != '\0' && *tmp_line != '\n')
 			{
-				nb = ft_atoll(tmp_line);
-				map[i][j] = nb;
+				nb = ft_atoll(tmp_line);//ok
+				coor[i][j] = nb;//ok
 			}
 			while (*tmp_line && *tmp_line != ' ')
-				str++;
+				tmp_line++;
 			j += 1;
 		}
 		i++;
 	}
+	return (coor);
 }
 
 int	**read_map(int fd, int line_cnt)
@@ -122,9 +127,14 @@ int	**read_map(int fd, int line_cnt)
 	int		col_cnt;
 	char	**map;
 	int		**coor;
-	map = get_map(fd, line_cnt);
-	col_cnt = ft_word_cnt(map[i], ' ');
+	int		i;
+
+	i = 0;
+	map = get_map(fd, line_cnt);//ok
+	while (!check_ln(map[i]))
+		i++;
+	col_cnt = ft_word_cnt(map[i], ' ');//캐리지 리턴까지 포함됨..
 	check_valid_map(map, col_cnt, line_cnt);//map size, 이상한 인자 확인
-	coor = map_to_coordinate(map, col_cnt, line_cnt)
+	coor = map_to_coordinate(map, col_cnt, line_cnt);//ok
 	return (coor);
 }

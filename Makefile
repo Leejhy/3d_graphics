@@ -11,7 +11,8 @@ NAME = fdf
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(INC)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -o $(NAME)
+# $(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o : %.c $(INC)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

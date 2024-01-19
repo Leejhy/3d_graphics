@@ -12,10 +12,10 @@ int	check_ln(char *str)
 	return (1);
 }
 
-void	check_valid_map(char **map, int col_cnt, int line_cnt)
+void	check_valid_map(char **map, size_t col_cnt, size_t line_cnt)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

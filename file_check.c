@@ -31,15 +31,13 @@ int	ft_strncmp(char *s1, char *s2, size_t n)
 size_t	ft_word_cnt(char *str, char sep)
 {
 	size_t	cnt;
-	size_t	i;
 
-	i = 0;
 	cnt = 0;
-	while (*str != '\n' && *str != '\0')
+	while (*str != '\0' && *str != '\n')
 	{
 		while (*str && *str == sep)
 			str++;
-		if (*str)
+		if (*str && *str != '\n')
 			cnt++;
 		while (*str && *str != sep)
 			str++;

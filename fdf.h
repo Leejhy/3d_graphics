@@ -32,9 +32,16 @@ void	euler_z(float *old_x, float *old_y, double angle);
 //parsing.c
 void	simple_check(char *str);
 int		ft_line_cnt(char *file_name);
-char	**parsing(char *file_name);
+int		**parsing(char *file_name)
 //read_map.c
-char	**read_map(int fd);
+int		**read_map(int fd, int line_cnt);
+int		**map_to_coordinate(char **map, int x_cnt, int y_cnt);
+int		**make_coordinate(char **map, int x_cnt, int y_cnt);
+char	**get_map(int fd, int line_cnt);
+long long	ft_atoll(const char *str);
+//readmap_utils.c
+void	check_valid_map(char **map, int col_cnt, int line_cnt);
+int		check_ln(char *str);
 //filecheck.c
 int		ft_strncmp(char *s1, char *s2, size_t n);
 size_t	ft_word_cnt(char *str, char sep);

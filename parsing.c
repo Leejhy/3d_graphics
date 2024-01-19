@@ -50,7 +50,7 @@ int	ft_line_cnt(char *file_name)
 	return (row);
 }
 
-char	**parsing(char *file_name)
+int	**parsing(char *file_name)
 {
 	int	fd;
 	int	line_cnt;

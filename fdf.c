@@ -54,6 +54,12 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		args_error();
 	map = parsing(argv[1]);//free 해줘야함
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j=0; j<10; j++)
+			printf("%d ", map[i][j]);
+		printf("\n");
+	}
 	// mlx = mlx_init();
 	// win = mlx_new_window(mlx, 500, 500, "plz");
 	// img.img = mlx_new_image(mlx, 500, 500);

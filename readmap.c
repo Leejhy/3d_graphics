@@ -26,17 +26,17 @@ long long	ft_atoll(const char *str)
 		str++;
 	}
 	if (!('0' <= *str && *str <= '9'))
-		ft_error();
+		map_error();
 	while ('0' <= *str && *str <= '9')
 	{
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	if (*str != ' ')//널, 공백이면 실행되면 안됨
+	if (*str != ' ')//100-1 이런거막아줌
 	{
-		if (*str == '\0')
+		if (*str == '\0' || *str == '\n')
 			return (sign * result);
-		ft_error();
+		map_error();
 	}
 	return (sign * result);
 }
@@ -126,4 +126,5 @@ int	**read_map(int fd, int line_cnt)
 	col_cnt = ft_word_cnt(map[i], ' ');
 	check_valid_map(map, col_cnt, line_cnt);//map size, 이상한 인자 확인
 	coor = map_to_coordinate(map, col_cnt, line_cnt)
+	return (coor);
 }

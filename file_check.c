@@ -35,7 +35,7 @@ size_t	ft_word_cnt(char *str, char sep)
 
 	i = 0;
 	cnt = 0;
-	while (*str)
+	while (*str != '\n' && *str != '\0')
 	{
 		while (*str && *str == sep)
 			str++;

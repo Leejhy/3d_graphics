@@ -46,5 +46,5 @@ void	ft_error(int err);
 void	args_error(void);
 void	malloc_failed(void);
 void	file_error(void);
-void	read_error(void);
+void	map_error(void);
 #endif

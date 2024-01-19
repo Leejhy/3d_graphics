@@ -40,8 +40,8 @@ void	file_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	read_error(void)
+void	map_error(void)
 {
-	write(2, "map read error\n", 15);
+	write(2, "wrong map\n", 10);
 	exit(EXIT_FAILURE);
 }

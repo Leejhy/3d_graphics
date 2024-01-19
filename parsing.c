@@ -52,13 +52,15 @@ int	ft_line_cnt(char *file_name)
 
 char	**parsing(char *file_name)
 {
-	int		fd;
-	int		line_cnt;
-	char	**map;
+	int	fd;
+	int	line_cnt;
+	int	**map;
 
 	simple_check(file_name);
 	ft_split(file_name);//여기 안에서 에러처리됨 다음줄이 실행되면 무조건 에러 아닌것
 	line_cnt = ft_line_cnt(file_name);
+	if (line_cnt == 0)
+		map_error();
 	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		ft_error(errno);

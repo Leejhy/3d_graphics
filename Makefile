@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INC = fdf.h
 SRCS =	fdf.c fdf_utils.c parsing.c file_check.c readmap.c readmap_utils.c \
-		error.c \
+		error.c dda.c rotation.c init.c \
 		./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = fdf
@@ -11,8 +11,8 @@ NAME = fdf
 all : $(NAME)
 
 $(NAME) : $(OBJS) $(INC)
-	$(CC) $(OBJS) -o $(NAME)
-# $(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+# $(CC) $(OBJS) -o $(NAME)
 
 %.o : %.c $(INC)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

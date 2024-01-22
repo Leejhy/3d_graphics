@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 21:24:20 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 22:16:00 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/19 22:11:55 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,20 @@ int	ft_line_cnt(char *file_name)
 	return (row);
 }
 
-int	**parsing(char *file_name)
+void	map_free(int **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
+
+int	**parsing(char *file_name, int *col_size, int *row_size)
 {
 	int	fd;
 	int	line_cnt;
@@ -60,12 +73,12 @@ int	**parsing(char *file_name)
 	simple_check(file_name);
 	ft_split(file_name);//여기 안에서 에러처리됨 다음줄이 실행되면 무조건 에러 아닌것
 	line_cnt = ft_line_cnt(file_name);//ok
-	if (line_cnt == 0)
+	if (line_cnt == 0)//2중 포인터 free
 		map_error();
 	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		ft_error(errno);
-	map = read_map(fd, line_cnt);//ok
+	map = read_map(fd, line_cnt, col_size, row_size);//ok
 	return (map);
 	//read부분~
 }

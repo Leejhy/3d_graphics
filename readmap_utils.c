@@ -7,7 +7,7 @@ int	check_ln(char *str)
 	i = 0;
 	while (str[i] == ' ')
 		i++;
-	if (str[i] == '\n' && str[i] == '\0')
+	if (str[i] == '\n' || str[i] == '\0')
 		return (0);
 	return (1);
 }

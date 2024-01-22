@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 18:23:29 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 22:21:45 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/19 22:13:04 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,27 @@ long long	ft_atoll(const char *str)
 	return (sign * result);
 }
 
-char	**get_map(int fd, int line_cnt)
+char	**get_map(int fd, int *line_cnt)
 {
 	char	**map;
 	char	*tmp;
 	int		i;
 
 	i = 1;
-	map = malloc(sizeof(char *) * (line_cnt + 1));
+	map = malloc(sizeof(char *) * (*line_cnt + 1));
 	if (!map)
 		malloc_failed();
-	while (line_cnt)
+	while (*line_cnt)
 	{
 		tmp = get_next_line(fd);
 		if (!check_ln(tmp))//맨처음 개행만 스킵
 			free(tmp);
 		else//개행 아닐때 break 해서 나오고
 			break ;
-		line_cnt--;
+		*line_cnt -= 1;
 	}
 	map[0] = tmp;
-	while (i < line_cnt)
+	while (i < *line_cnt)
 	{
 		map[i] = get_next_line(fd);
 		i++;
@@ -122,7 +122,7 @@ int	**map_to_coordinate(char **map, int x_cnt, int y_cnt)
 	return (coor);
 }
 
-int	**read_map(int fd, int line_cnt)
+int	**read_map(int fd, int line_cnt, int *col_size, int *row_size)
 {
 	int		col_cnt;
 	char	**map;
@@ -130,10 +130,12 @@ int	**read_map(int fd, int line_cnt)
 	int		i;
 
 	i = 0;
-	map = get_map(fd, line_cnt);//ok
+	map = get_map(fd, &line_cnt);//ok
 	while (!check_ln(map[i]))
 		i++;
-	col_cnt = ft_word_cnt(map[i], ' ');//캐리지 리턴까지 포함됨..
+	col_cnt = ft_word_cnt(map[i], ' ');//ok
+	*col_size = col_cnt;
+	*row_size = line_cnt;
 	check_valid_map(map, col_cnt, line_cnt);//map size, 이상한 인자 확인
 	coor = map_to_coordinate(map, col_cnt, line_cnt);//ok
 	return (coor);

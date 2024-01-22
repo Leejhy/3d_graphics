@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:38:58 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/22 21:50:04 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:28:10 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,52 @@ void	coord_init(t_coord *coord)
 	coord->gap = 25;
 	coord->fir_x = (coord->width / 2) - coord->gap * (coord->col / 2);
 	coord->fir_y = (coord->height / 2) - coord->gap * (coord->row / 2);
+}
+
+void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img)
+{
+	vars->mlx = mlx_init();
+	vars->win = mlx_new_window(vars->mlx, coord->width, coord->height, "plz");
+	img->img = mlx_new_image(vars->mlx, coord->width, coord->height);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
+}
+
+t_xyz	**xyz_malloc(int row, int col)
+{
+	t_xyz	**temp_xyz;
+	int	i;
+
+	i = 0;
+	temp_xyz = malloc(sizeof(t_xyz *) * (row + 1));//row만큼 malloc t_xyz *malloc하기
+	if (temp_xyz == NULL)
+		malloc_failed();
+	while (i < row)
+	{
+		temp_xyz[i] = malloc(sizeof(t_xyz) * col);
+		i++;
+	}
+	temp_xyz[i] = NULL;
+	return (temp_xyz);
+}
+
+void	xyz_map_init(t_coord *coord, int **z_map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	coord->xyz_map = xyz_malloc(coord->row, coord->col);
+	while (coord->xyz_map[i])
+	{
+		while (j < coord->col)
+		{
+			coord->xyz_map[i][j].x = coord->fir_x ;
+			coord->xyz_map[i][j].y = coord->fir_y ;
+			coord->xyz_map[i][j].z = z_map[i][j];
+			j++;
+		}
+		i++;
+	}
 }

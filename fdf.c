@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:31:23 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/22 21:50:09 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:20:03 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,15 @@ int	main(int argc, char **argv)
 	t_vars	vars;
 	t_coord	coord;
 	t_data	img;
-	int		**map;
+	t_xyz	xyz_map;
+	int		**z_map;
 
 	if (argc != 2)
 		args_error();
-	map = parsing(argv[1], &coord.col, &coord.row); //free 해줘야함
+	z_map = parsing(argv[1], &coord.col, &coord.row); //free 해줘야함
 	coord_init(&coord);
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1280, 800, "plz");
-	img.img = mlx_new_image(vars.mlx, 1280, 800);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
-			&img.line_length, &img.endian);
+	vars_init(&vars, &coord, &img);
+	xyz_map_init(&xyz_map, &coord);
 	ft_write_pixel(img, coord);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);

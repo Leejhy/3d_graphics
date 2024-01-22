@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/22 21:11:35 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/22 22:11:51 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
+typedef struct s_xyz
+{
+	float	x;
+	float	y;
+	float	z;
+}	t_xyz;
+
 typedef struct s_coord
 {
 	float	fir_x;
@@ -56,6 +63,7 @@ typedef struct s_coord
 	int		col;
 	int		row;
 	int		gap;
+	t_xyz	**xyz_map;
 }	t_coord;
 
 //fdf.c
@@ -63,6 +71,10 @@ void	ft_write_pixel(t_data img, t_coord coord);
 // void    my_mlx_pixel_put(t_data *data, float x, float y, int color);
 void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
+//init.c
+void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
+void	xyz_map_init(t_xyz *xyz_map, t_coord *coord);
+void	coord_init(t_coord *coord);
 //bresenham.c
 // void	Bresenham(int start_x, int start_y, int end_x, int end_y);
 // void	Bresenham(float start_x, float start_y, float end_x, float end_y, t_data *img);

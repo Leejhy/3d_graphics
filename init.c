@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:38:58 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/22 22:29:16 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:16:37 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	coord_init(t_coord *coord)
 	coord->width = 1280;//윈도우 중앙x
 	coord->height = 800;//윈도우 중앙y
 	coord->gap = 25;
-	coord->fir_x = (coord->width / 2) - coord->gap * (coord->col / 2);
-	coord->fir_y = (coord->height / 2) - coord->gap * (coord->row / 2);
+	coord->offset_x = (coord->width / 2) - coord->gap * (coord->col / 2);
+	coord->offset_y = (coord->height / 2) - coord->gap * (coord->row / 2);
 }
 
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img)
@@ -60,8 +60,8 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 		j = 0;
 		while (j < coord->col)
 		{
-			coord->xyz_map[i][j].x = coord->fir_x + (coord->gap * j);
-			coord->xyz_map[i][j].y = coord->fir_y + (coord->gap * i);
+			coord->xyz_map[i][j].x = coord->gap * j;
+			coord->xyz_map[i][j].y = coord->gap * i;
 			coord->xyz_map[i][j].z = z_map[i][j];
 			j++;
 		}
@@ -83,8 +83,8 @@ void	rotate_init(t_coord *coord)
 		j = 0;
 		while (j < coord->col)
 		{
-			euler_x(xyz[i][j].y, xyz[i][j].z, -30.0);
-			euler_z(xyz[i][j].x, xyz[i][j].y, -45.0);
+			euler_x(&xyz[i][j].y, &xyz[i][j].z, -35.264);
+			euler_z(&xyz[i][j].x, &xyz[i][j].y, -45.0);
 			j++;
 		}
 		i++;

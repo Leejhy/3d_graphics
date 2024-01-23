@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/22 22:11:51 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/23 22:22:28 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 typedef struct s_dda
 {
+	float	start_x;
+	float	start_y;
 	float	dx;
 	float	dy;
 	float	base;
@@ -56,8 +58,8 @@ typedef struct s_xyz
 
 typedef struct s_coord
 {
-	float	fir_x;
-	float	fir_y;
+	float	offset_x;
+	float	offset_y;
 	float	height;
 	float	width;
 	int		col;
@@ -67,7 +69,6 @@ typedef struct s_coord
 }	t_coord;
 
 //fdf.c
-void	ft_write_pixel(t_data img, t_coord coord);
 // void    my_mlx_pixel_put(t_data *data, float x, float y, int color);
 void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
@@ -75,18 +76,17 @@ int		create_trgb(int t, int r, int g, int b);
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
 void	xyz_map_init(t_coord *coord, int **z_map);
 void	coord_init(t_coord *coord);
-//bresenham.c
-// void	Bresenham(int start_x, int start_y, int end_x, int end_y);
-// void	Bresenham(float start_x, float start_y, float end_x, float end_y, t_data *img);
-void	dda(float start_x, float start_y, float end_x, float end_y, t_data *img);
-// void	Bresenham_y(float start_x, float start_y, float end_x, float end_y, t_data *img);
+//put_pixel.c
+void	init_dda(t_dda *dda, t_coord coord, int row, int col);
+void	ft_write_pixel(t_data img, t_coord coord);
+void	dda(float start_x, float start_y, float end_x, float end_y, t_data *img, int *map);
+
 //fdf_utils.c
 size_t	ft_strlen(char *str);
 //rotation.c
 void	euler_x(float *old_y, float *old_z, double angle);
 void	euler_y(float *old_x, float *old_z, double angle);
 void	euler_z(float *old_x, float *old_y, double angle);
-void	ro_matrix(float *old_x, float *old_y);
 //parsing.c
 void	simple_check(char *str);
 int		ft_line_cnt(char *file_name);

@@ -71,18 +71,20 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 
 void	rotate_init(t_coord *coord)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	t_xyz	**xyz;
+
 
 	i = 0;
-	while (coord->xyz_map[i])
+	xyz = coord->xyz_map;
+	while (xyz[i])
 	{
 		j = 0;
 		while (j < coord->col)
 		{
-			coord->xyz_map[i][j].x = 
-			coord->xyz_map[i][j].y = 
-			coord->xyz_map[i][j].z = 
+			euler_x(xyz[i][j].y, xyz[i][j].z, -30.0);
+			euler_z(xyz[i][j].x, xyz[i][j].y, -45.0);
 			j++;
 		}
 		i++;

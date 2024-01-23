@@ -18,11 +18,13 @@ void	euler_x(float *old_y, float *old_z, double angle)
 	float	z;
 	float	new_y;
 	float	new_z;
+	float	radian;
 
+	radian = angle * (M_PI / 180.0);
 	y = *old_y;
 	z = *old_z;
-	new_y = y * cos(angle) - z * sin(angle);
-	new_z = y * sin(angle) + z * cos(angle);
+	new_y = y * cos(radian) - z * sin(radian);
+	new_z = y * sin(radian) + z * cos(radian);
 	*old_y = new_y;
 	*old_z = new_z;
 }
@@ -33,11 +35,13 @@ void	euler_y(float *old_x, float *old_z, double angle)
 	float	z;
 	float	new_x;
 	float	new_z;
-
+	float	radian;
+	
+	radian = angle * (M_PI / 180.0);
 	x = *old_x;
 	z = *old_z;
-	new_x = cos(angle) * x - sin(angle) * z;
-	new_z = sin(angle) * x + cos(angle) * z;
+	new_x = cos(radian) * x - sin(radian) * z;
+	new_z = sin(radian) * x + cos(radian) * z;
 	*old_x = new_x;
 	*old_z = new_z;
 }
@@ -48,11 +52,13 @@ void	euler_z(float *old_x, float *old_y, double angle)
 	float	y;
 	float	new_x;
 	float	new_y;
+	float	radian;
 
+	radian = angle * (M_PI / 180.0);
 	x = *old_x;
 	y = *old_y;
-	new_x = cos(angle) * x - sin(angle) * y;
-	new_y = sin(angle) * x + cos(angle) * y;
+	new_x = cos(radian) * x - sin(radian) * y;
+	new_y = sin(radian) * x + cos(radian) * y;
 	*old_x = new_x;
 	*old_y = new_y;
 }

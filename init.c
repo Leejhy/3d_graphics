@@ -54,15 +54,35 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 	int	j;
 
 	i = 0;
-	j = 0;
 	coord->xyz_map = xyz_malloc(coord->row, coord->col);
 	while (coord->xyz_map[i])
 	{
+		j = 0;
 		while (j < coord->col)
 		{
-			coord->xyz_map[i][j].x = coord->fir_x ;
-			coord->xyz_map[i][j].y = coord->fir_y ;
+			coord->xyz_map[i][j].x = coord->fir_x + (coord->gap * j);
+			coord->xyz_map[i][j].y = coord->fir_y + (coord->gap * i);
 			coord->xyz_map[i][j].z = z_map[i][j];
+			j++;
+		}
+		i++;
+	}
+}
+
+void	rotate_init(t_coord *coord)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (coord->xyz_map[i])
+	{
+		j = 0;
+		while (j < coord->col)
+		{
+			coord->xyz_map[i][j].x = 
+			coord->xyz_map[i][j].y = 
+			coord->xyz_map[i][j].z = 
 			j++;
 		}
 		i++;

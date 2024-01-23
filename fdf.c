@@ -47,7 +47,8 @@ int	main(int argc, char **argv)
 	z_map = parsing(argv[1], &coord.col, &coord.row); //free 해줘야함
 	coord_init(&coord);
 	vars_init(&vars, &coord, &img);
-	xyz_map_init(&xyz_map, &coord);
+	xyz_map_init(&xyz_map, &coord);//모든 xyz좌표를 2차원 구조체 배열로 들고있음
+	rotate_init(&coord);
 	ft_write_pixel(img, coord);
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);

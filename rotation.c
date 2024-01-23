@@ -56,18 +56,5 @@ void	euler_z(float *old_x, float *old_y, double angle)
 	*old_x = new_x;
 	*old_y = new_y;
 }
-
-void	ro_matrix(float *old_x, float *old_y)
-{
-	float	x;
-	float	y;
-	float	new_x;
-	float	new_y;
-	
-	x = *old_x;
-	y = *old_y;
-	new_x = (cos(30.0 * (M_PI / 180.0)) * x - sin(30.0 * (M_PI / 180.0)) * y);
-	new_y = ((sin(30.0 * (M_PI / 180.0)) * x) + cos(30.0 * (M_PI / 180.0)) * y);
-	*old_x = new_x;
-	*old_y = new_y;
-}
+// new_x = (cos(30.0 * (M_PI / 180.0)) * x - sin(30.0 * (M_PI / 180.0)) * y);
+// 	new_y = ((sin(30.0 * (M_PI / 180.0)) * x) + cos(30.0 * (M_PI / 180.0)) * y);

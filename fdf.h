@@ -73,7 +73,7 @@ void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		create_trgb(int t, int r, int g, int b);
 //init.c
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
-void	xyz_map_init(t_xyz *xyz_map, t_coord *coord);
+void	xyz_map_init(t_coord *coord, int **z_map);
 void	coord_init(t_coord *coord);
 //bresenham.c
 // void	Bresenham(int start_x, int start_y, int end_x, int end_y);

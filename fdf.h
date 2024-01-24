@@ -76,6 +76,8 @@ int		create_trgb(int t, int r, int g, int b);
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
 void	xyz_map_init(t_coord *coord, int **z_map);
 void	coord_init(t_coord *coord);
+//hook.c
+int	esc_hook(int key, t_vars *vars);
 //put_pixel.c
 void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);
 void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);

@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 INC = fdf.h
 SRCS =	fdf.c fdf_utils.c parsing.c file_check.c readmap.c readmap_utils.c \
-		error.c put_pixel.c rotation.c init.c \
+		error.c put_pixel.c rotation.c init.c hook.c \
 		./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = fdf

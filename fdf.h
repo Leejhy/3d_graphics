@@ -77,10 +77,10 @@ void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
 void	xyz_map_init(t_coord *coord, int **z_map);
 void	coord_init(t_coord *coord);
 //put_pixel.c
-void	init_dda(t_dda *dda, t_coord coord, int row, int col);
-void	ft_write_pixel(t_data img, t_coord coord);
-void	dda(float start_x, float start_y, float end_x, float end_y, t_data *img, int *map);
-
+void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);
+void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);
+void	ft_write_pixel(t_data *img, t_coord coord);
+void	ft_dda(t_dda dda, t_data *img);
 //fdf_utils.c
 size_t	ft_strlen(char *str);
 //rotation.c

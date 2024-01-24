@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:49 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/21 17:32:19 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/24 21:46:41 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	euler_x(float *old_y, float *old_z, double angle)
 	float	new_z;
 	float	radian;
 
-	radian = angle * (M_PI / 180.0);
+	radian = M_PI / 180.0 * angle;
 	y = *old_y;
 	z = *old_z;
 	new_y = y * cos(radian) - z * sin(radian);
@@ -37,7 +37,7 @@ void	euler_y(float *old_x, float *old_z, double angle)
 	float	new_z;
 	float	radian;
 	
-	radian = angle * (M_PI / 180.0);
+	radian = M_PI / 180.0 * angle;
 	x = *old_x;
 	z = *old_z;
 	new_x = cos(radian) * x - sin(radian) * z;
@@ -54,7 +54,7 @@ void	euler_z(float *old_x, float *old_y, double angle)
 	float	new_y;
 	float	radian;
 
-	radian = angle * (M_PI / 180.0);
+	radian = M_PI / 180.0 * angle;
 	x = *old_x;
 	y = *old_y;
 	new_x = cos(radian) * x - sin(radian) * y;

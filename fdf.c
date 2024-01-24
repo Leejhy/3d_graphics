@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:31:23 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/23 22:22:25 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/24 22:24:18 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 	t_vars	vars;
 	t_coord	coord;
 	t_data	img;
-	t_xyz	xyz_map;
 	int		**z_map;
 
 	if (argc != 2)
@@ -43,13 +42,11 @@ int	main(int argc, char **argv)
 	z_map = parsing(argv[1], &coord.col, &coord.row); //free 해줘야함
 	coord_init(&coord);
 	vars_img_init(&vars, &coord, &img);
-	xyz_map_init(&xyz_map, &coord);//모든 xyz좌표를 2차원 구조체 배열로 들고있음
-	rotate_init(&coord);
-	ft_write_pixel(img, coord);
-	//mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	//mlx_put_image필요한건가?
+	xyz_map_init(&coord, z_map);//xyz 구조체 문제인줄 알았는데 아님
+	rotate_init(&coord);// 얘가 문제
+	ft_write_pixel(&img, coord);
 	mlx_key_hook(vars.win, esc_hook, &vars);
-	mlx_hook(vars.win, 17, 0, exit, 0);//exit hook을 따로 줘야되나?
-	//mlx_hook(win포인터, x11 이벤트, x11 마스크, 함수포인터, 함수매개변수)
+	mlx_hook(vars.win, 17, 0, exit_hook, 0);//exit hook을 따로 줘야되나?
+	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_loop(vars.mlx);
 }

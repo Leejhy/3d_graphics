@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/23 22:22:28 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/24 20:08:33 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ int		create_trgb(int t, int r, int g, int b);
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
 void	xyz_map_init(t_coord *coord, int **z_map);
 void	coord_init(t_coord *coord);
+void	rotate_init(t_coord *coord);
 //hook.c
 int	esc_hook(int key, t_vars *vars);
+int	exit_hook(void);
 //put_pixel.c
-void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);
-void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz);
+void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
+void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
 void	ft_write_pixel(t_data *img, t_coord coord);
-void	ft_dda(t_dda dda, t_data *img);
+void	ft_dda(t_dda dda, t_data *img, t_coord coord);
 //fdf_utils.c
 size_t	ft_strlen(char *str);
 //rotation.c

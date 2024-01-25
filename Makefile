@@ -1,7 +1,7 @@
 CC = cc
 # CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 # CFLAGS = 
-# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 INC = fdf.h
 SRCS =	fdf.c fdf_utils.c parsing.c file_check.c readmap.c readmap_utils.c \
 		error.c put_pixel.c rotation.c init.c hook.c \

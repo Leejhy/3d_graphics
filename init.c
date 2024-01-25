@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:38:58 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/24 22:17:46 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:57:41 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 		{
 			coord->xyz_map[i][j].x = coord->gap * j;
 			coord->xyz_map[i][j].y = coord->gap * i;
-			coord->xyz_map[i][j].z = coord->gap * z_map[i][j];
+			coord->xyz_map[i][j].z = 5 * z_map[i][j];
 			j++;
 		}
 		i++;
@@ -83,9 +83,10 @@ void	rotate_init(t_coord *coord)
 		j = 0;
 		while (j < coord->col)
 		{
-			euler_x(&xyz[i][j].y, &xyz[i][j].z, 35.264);
-			// euler_z(&xyz[i][j].x, &xyz[i][j].y, 45.0);
 			euler_z(&xyz[i][j].x, &xyz[i][j].y, 45.0);
+			euler_x(&xyz[i][j].y, &xyz[i][j].z, 35.264);
+			// euler_z(&xyz[i][j].x, &xyz[i][j].y, -45.0);
+			//euler_z를하면 자꾸 선이 깨짐(흔들림)
 			j++;
 		}
 		i++;

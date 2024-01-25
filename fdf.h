@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/24 20:08:33 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/25 21:10:34 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_dda
 	float	start_y;
 	float	dx;
 	float	dy;
-	float	base;
+	float	dis;
 	float	inc_x;
 	float	inc_y;
 }	t_dda;
@@ -81,10 +81,10 @@ void	rotate_init(t_coord *coord);
 int	esc_hook(int key, t_vars *vars);
 int	exit_hook(void);
 //put_pixel.c
-void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
-void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
+// void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
+// void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
 void	ft_write_pixel(t_data *img, t_coord coord);
-void	ft_dda(t_dda dda, t_data *img, t_coord coord);
+void	write_dda(t_xyz xyz, t_xyz next_xyz, t_data *img, t_coord coord);
 //fdf_utils.c
 size_t	ft_strlen(char *str);
 //rotation.c

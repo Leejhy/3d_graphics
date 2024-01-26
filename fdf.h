@@ -65,6 +65,7 @@ typedef struct s_coord
 	int		col;
 	int		row;
 	int		gap;
+	int		z_gap;
 	t_xyz	**xyz_map;
 }	t_coord;
 

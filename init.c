@@ -17,8 +17,9 @@ void	coord_init(t_coord *coord)
 	coord->width = 1280;//윈도우 중앙x
 	coord->height = 800;//윈도우 중앙y
 	coord->gap = 25;
-	coord->offset_x = (coord->width / 2) - coord->gap * (coord->col / 2);
-	coord->offset_y = (coord->height / 2) - coord->gap * (coord->row / 2);
+	coord->z_gap = 5;
+	// coord->offset_x = (coord->width / 2) - coord->gap * (coord->col / 2);//offset 수정
+	// coord->offset_y = (coord->height / 2) - coord->gap * (coord->row / 2);
 }
 
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img)
@@ -55,6 +56,9 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 
 	i = 0;
 	coord->xyz_map = xyz_malloc(coord->row, coord->col);
+	while (coord->gap != 5 && coord->gap * (coord->col - 1) > coord->width)//최대 좌표가 최소 5까지 줄이기
+		coord->gap -= 1;
+	coord->z_gap = coord->gap / 5;//
 	while (coord->xyz_map[i])
 	{
 		j = 0;
@@ -62,7 +66,7 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 		{
 			coord->xyz_map[i][j].x = coord->gap * j;
 			coord->xyz_map[i][j].y = coord->gap * i;
-			coord->xyz_map[i][j].z = 5 * z_map[i][j];
+			coord->xyz_map[i][j].z = coord->z_gap * z_map[i][j];
 			j++;
 		}
 		i++;
@@ -75,7 +79,6 @@ void	rotate_init(t_coord *coord)
 	int		j;
 	t_xyz	**xyz;
 
-
 	i = 0;
 	xyz = coord->xyz_map;
 	while (xyz[i])
@@ -85,10 +88,10 @@ void	rotate_init(t_coord *coord)
 		{
 			euler_z(&xyz[i][j].x, &xyz[i][j].y, 45.0);
 			euler_x(&xyz[i][j].y, &xyz[i][j].z, 35.264);
-			// euler_z(&xyz[i][j].x, &xyz[i][j].y, -45.0);
-			//euler_z를하면 자꾸 선이 깨짐(흔들림)
 			j++;
 		}
 		i++;
 	}
+	coord->offset_x = coord->width / 2 - xyz[i / 2][j / 2].x;//offset_수정
+	coord->offset_y = coord->height / 2 - xyz[i / 2][j / 2].y;
 }

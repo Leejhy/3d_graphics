@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	z_map = parsing(argv[1], &coord.col, &coord.row); //free 해줘야함
 	coord_init(&coord);
 	vars_img_init(&vars, &coord, &img);
-	xyz_map_init(&coord, z_map);//xyz 구조체 문제인줄 알았는데 아님
+	xyz_map_init(&coord, z_map);
 	rotate_init(&coord);// 얘가 문제
 	ft_write_pixel(&img, coord);
 	mlx_key_hook(vars.win, esc_hook, &vars);

@@ -32,7 +32,7 @@ long long	ft_atoll(const char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	if (*str != ' ')//100-1 이런거막아줌
+	if (!(*str == ' ' || *str == '\t'))
 	{
 		if (*str == '\0' || *str == '\n' || *str == 13)//13이거 뺴야됨 윈도우라서 CR때매
 			return (sign * result);
@@ -106,16 +106,16 @@ int	**map_to_coordinate(char **map, int x_cnt, int y_cnt)
 		j = 0;
 		while (*tmp_line && *tmp_line != '\n')
 		{
-			while (*tmp_line && *tmp_line == ' ')
+			while (*tmp_line && is_sep(*tmp_line, " \t"))
 				tmp_line++;
 			if (*tmp_line != '\0' && *tmp_line != '\n')
 			{
 				nb = ft_atoll(tmp_line);//ok
 				coor[i][j] = nb;//ok
 			}
-			while (*tmp_line && *tmp_line != ' ')
+			while (*tmp_line && !is_sep(*tmp_line, " \t"))
 				tmp_line++;
-			j += 1;
+			j++;
 		}
 		i++;
 	}
@@ -133,8 +133,10 @@ int	**read_map(int fd, int line_cnt, int *col_size, int *row_size)
 	map = get_map(fd, &line_cnt);//ok
 	while (!check_ln(map[i]))
 		i++;
-	col_cnt = ft_word_cnt(map[i], ' ');//ok
+	col_cnt = ft_col_cnt(map[i], " \t");//' ', '\t'
 	*col_size = col_cnt;
+	while (!check_ln(map[line_cnt - 1]))//마지막줄 체크
+		line_cnt--;
 	*row_size = line_cnt;
 	check_valid_map(map, col_cnt, line_cnt);//map size, 이상한 인자 확인
 	coor = map_to_coordinate(map, col_cnt, line_cnt);//ok

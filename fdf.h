@@ -105,6 +105,8 @@ long long	ft_atoll(const char *str);
 //readmap_utils.c
 void	check_valid_map(char **map, size_t col_cnt, size_t line_cnt);
 int		check_ln(char *str);
+int		is_sep(char c, char *sep);
+size_t	ft_col_cnt(char *str, char *sep);
 //filecheck.c
 int		ft_strncmp(char *s1, char *s2, size_t n);
 size_t	ft_word_cnt(char *str, char sep);

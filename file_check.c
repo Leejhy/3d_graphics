@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   filecheck.c                                        :+:      :+:    :+:   */
+/*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 21:35:57 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/18 18:03:56 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:28:40 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	split_frees(char **ptr)
 	free(ptr);
 }
 
-void	ft_split(char *str)
+void	filename_check(char *str)
 {
 	char	**strings;
 	size_t	word_cnt;
@@ -104,7 +104,7 @@ void	ft_split(char *str)
 		i++;
 	}
 	strings[i] = NULL;
-	if (ft_strncmp(strings[i - 1], "fdf", 4) != 0)//무조건 1개 이상이니까 괜찮
+	if (ft_strncmp(strings[i - 1], "fdf", 4) != 0)
 		file_error();
 	split_frees(strings);
 }

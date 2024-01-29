@@ -6,13 +6,13 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 21:24:20 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/19 22:11:55 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:08:22 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	simple_check(char *str)
+void	f_check(char *str)
 {
 	int	i;
 
@@ -38,10 +38,10 @@ int	ft_line_cnt(char *file_name)
 	while (1)
 	{
 		tmp_line = get_next_line(fd);
-		if (!tmp_line)//eof
+		if (!tmp_line)
 			break ;
-		row++;//호출 했는데 eof면 끝
-		if (!is_nl(tmp_line))//마지막줄
+		row++;
+		if (!is_nl(tmp_line))
 			break ;
 		free(tmp_line);
 	}
@@ -70,16 +70,14 @@ int	**parsing(char *file_name, int *col_size, int *row_size)
 	int	line_cnt;
 	int	**map;
 
-	simple_check(file_name);
-	ft_split(file_name);//여기 안에서 에러처리됨 다음줄이 실행되면 무조건 에러 아닌것
-	line_cnt = ft_line_cnt(file_name);//ok
-	if (line_cnt == 0)//2중 포인터 free
+	f_check(file_name);
+	filename_check(file_name);
+	line_cnt = ft_line_cnt(file_name);
+	if (line_cnt == 0)
 		map_error();
 	fd = open(file_name, O_RDWR);
 	if (fd < 0)
 		ft_error(errno);
-	map = read_map(fd, line_cnt, col_size, row_size);//ok
+	map = read_map(fd, line_cnt, col_size, row_size);
 	return (map);
-	//read부분~
 }
-

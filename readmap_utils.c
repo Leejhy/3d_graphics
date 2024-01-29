@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readmap_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/26 18:31:28 by junhylee          #+#    #+#             */
+/*   Updated: 2024/01/29 18:11:06 by junhylee         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int	check_ln(char *str)
@@ -5,9 +17,11 @@ int	check_ln(char *str)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+		map_error();
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
-	if (str[i] == 13 || str[i] == '\n' || str[i] == '\0')//str[i] == 13빼기
+	if (str[i] == '\n' || str[i] == '\0')
 		return (0);
 	return (1);
 }
@@ -22,7 +36,7 @@ void	check_valid_map(char **map, size_t col_cnt, size_t line_cnt)
 	while (i < line_cnt)
 	{
 		if (col_cnt != ft_col_cnt(map[i], " \t"))
-			map_error();//map 크기 안맞는거 에러
+			map_error();
 		while (j < col_cnt)
 		{
 			if (!(('0' <= map[i][j] && map[i][j] <= '9')
@@ -35,7 +49,7 @@ void	check_valid_map(char **map, size_t col_cnt, size_t line_cnt)
 	}
 }
 
-int		is_sep(char c, char *sep)
+int	is_sep(char c, char *sep)
 {
 	while (*sep)
 	{
@@ -53,7 +67,7 @@ size_t	ft_col_cnt(char *str, char *sep)
 	cnt = 0;
 	while (*str != '\0' && *str != '\n')
 	{
-		while (*str != '\0'&& is_sep(*str, sep))
+		while (*str != '\0' && is_sep(*str, sep))
 			str++;
 		if (*str != '\0' && *str != '\n')
 			cnt++;
@@ -61,4 +75,17 @@ size_t	ft_col_cnt(char *str, char *sep)
 			str++;
 	}
 	return (cnt);
+}
+
+void	map_frees(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }

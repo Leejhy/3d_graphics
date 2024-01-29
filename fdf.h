@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:29:56 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:10:34 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:19:37 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <stdio.h>
+# include <string.h>
+# include <errno.h>
 # include <math.h>
 # include "mlx.h"
 # include "./gnl/get_next_line.h"
@@ -70,53 +69,52 @@ typedef struct s_coord
 }	t_coord;
 
 //fdf.c
-// void    my_mlx_pixel_put(t_data *data, float x, float y, int color);
-void    my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		create_trgb(int t, int r, int g, int b);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			create_trgb(int t, int r, int g, int b);
 //init.c
-void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
-void	xyz_map_init(t_coord *coord, int **z_map);
-void	coord_init(t_coord *coord);
-void	rotate_init(t_coord *coord);
+void		vars_img_init(t_vars *vars, t_coord *coord, t_data *img);
+void		xyz_map_init(t_coord *coord, int **z_map);
+void		coord_init(t_coord *coord);
+void		rotate_init(t_coord *coord);
 //hook.c
-int	esc_hook(int key, t_vars *vars);
-int	exit_hook(void);
+int			esc_hook(int key, t_vars *vars);
+int			exit_hook(void);
 //put_pixel.c
-// void	x_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
-// void	y_set_dda(t_dda *dda, t_coord coord, t_xyz xyz, t_xyz next_xyz);
-void	ft_write_pixel(t_data *img, t_coord coord);
-void	write_dda(t_xyz xyz, t_xyz next_xyz, t_data *img, t_coord coord);
+void		ft_write_pixel(t_data *img, t_coord coord);
+void		write_dda(t_xyz xyz, t_xyz next_xyz, t_data *img, t_coord coord);
 //fdf_utils.c
-size_t	ft_strlen(char *str);
+size_t		ft_strlen(char *str);
+void		xyz_frees(t_xyz **xyz, int row);
 //rotation.c
-void	euler_x(float *old_y, float *old_z, double angle);
-void	euler_y(float *old_x, float *old_z, double angle);
-void	euler_z(float *old_x, float *old_y, double angle);
+void		euler_x(float *old_y, float *old_z, double angle);
+void		euler_z(float *old_x, float *old_y, double angle);
 //parsing.c
-void	simple_check(char *str);
-int		ft_line_cnt(char *file_name);
-int		**parsing(char *file_name, int *col_size, int *row_size);
+void		f_check(char *str);
+int			ft_line_cnt(char *file_name);
+int			**parsing(char *file_name, int *col_size, int *row_size);
 //read_map.c
-int		**read_map(int fd, int line_cnt, int *col_size, int *row_size);
-int		**map_to_coordinate(char **map, int x_cnt, int y_cnt);
-int		**make_coordinate(int x_cnt, int y_cnt);
-char	**get_map(int fd, int *line_cnt);
+int			**read_map(int fd, int line_cnt, int *col_size, int *row_size);
+int			**map_to_coordinate(char **map, int x_cnt, int y_cnt);
+int			**make_coordinate(int x_cnt, int y_cnt);
+char		**get_map(int fd, int *line_cnt);
 long long	ft_atoll(const char *str);
 //readmap_utils.c
-void	check_valid_map(char **map, size_t col_cnt, size_t line_cnt);
-int		check_ln(char *str);
-int		is_sep(char c, char *sep);
-size_t	ft_col_cnt(char *str, char *sep);
+void		check_valid_map(char **map, size_t col_cnt, size_t line_cnt);
+int			check_ln(char *str);
+int			is_sep(char c, char *sep);
+size_t		ft_col_cnt(char *str, char *sep);
+void		map_frees(char **map);
 //filecheck.c
-int		ft_strncmp(char *s1, char *s2, size_t n);
-size_t	ft_word_cnt(char *str, char sep);
-char	*ft_strdup(char *str, char sep);
-void	split_frees(char **ptr);
-void	ft_split(char *str);
+int			ft_strncmp(char *s1, char *s2, size_t n);
+size_t		ft_word_cnt(char *str, char sep);
+char		*ft_strdup(char *str, char sep);
+void		split_frees(char **ptr);
+void		filename_check(char *str);
 //error.c
-void	ft_error(int err);
-void	args_error(void);
-void	malloc_failed(void);
-void	file_error(void);
-void	map_error(void);
+void		ft_error(int err);
+void		args_error(void);
+void		malloc_failed(void);
+void		file_error(void);
+void		map_error(void);
+
 #endif

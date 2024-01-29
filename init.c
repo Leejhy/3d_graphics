@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 21:38:58 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/25 21:57:41 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:31:17 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	coord_init(t_coord *coord)
 {
-	coord->width = 1280;//윈도우 중앙x
-	coord->height = 800;//윈도우 중앙y
+	coord->width = 1280;
+	coord->height = 800;
 	coord->gap = 25;
-	coord->z_gap = 5;
-	// coord->offset_x = (coord->width / 2) - coord->gap * (coord->col / 2);//offset 수정
-	// coord->offset_y = (coord->height / 2) - coord->gap * (coord->row / 2);
 }
 
 void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img)
@@ -34,10 +31,10 @@ void	vars_img_init(t_vars *vars, t_coord *coord, t_data *img)
 t_xyz	**xyz_malloc(int row, int col)
 {
 	t_xyz	**temp_xyz;
-	int	i;
+	int		i;
 
 	i = 0;
-	temp_xyz = malloc(sizeof(t_xyz *) * (row + 1));//row만큼 malloc t_xyz *malloc하기
+	temp_xyz = malloc(sizeof(t_xyz *) * (row + 1));
 	if (temp_xyz == NULL)
 		malloc_failed();
 	while (i < row)
@@ -56,9 +53,10 @@ void	xyz_map_init(t_coord *coord, int **z_map)
 
 	i = 0;
 	coord->xyz_map = xyz_malloc(coord->row, coord->col);
-	while (coord->gap != 5 && coord->gap * (coord->col - 1) > coord->width)//최대 좌표가 최소 5까지 줄이기
+	while ((coord->gap != 5 && coord->gap * (coord->col - 1) > coord->width)
+		|| (coord->gap != 5 && coord->gap * (coord->row - 1) > coord->height))
 		coord->gap -= 1;
-	coord->z_gap = coord->gap / 5;//
+	coord->z_gap = coord->gap / 5;
 	while (coord->xyz_map[i])
 	{
 		j = 0;
@@ -92,6 +90,6 @@ void	rotate_init(t_coord *coord)
 		}
 		i++;
 	}
-	coord->offset_x = coord->width / 2 - xyz[i / 2][j / 2].x;//offset_수정
+	coord->offset_x = coord->width / 2 - xyz[i / 2][j / 2].x;
 	coord->offset_y = coord->height / 2 - xyz[i / 2][j / 2].y;
 }

@@ -1,25 +1,28 @@
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-# CFLAGS = 
 CFLAGS = -Wall -Wextra -Werror
+FRAMEWORK = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = fdf.h
-SRCS =	fdf.c fdf_utils.c parsing.c file_check.c readmap.c readmap_utils.c \
-		error.c put_pixel.c rotation.c init.c hook.c \
+SRCS =	fdf.c fdf_utils.c init.c error.c \
+		file_check.c parsing.c readmap.c readmap_utils.c \
+		rotation.c hook.c put_pixel.c \
 		./gnl/get_next_line.c ./gnl/get_next_line_utils.c
 OBJS = ${SRCS:.c=.o}
 NAME = fdf
+MLX_DIR = ./mlx
 
-all : $(NAME)
+all :
+	@make -C $(MLX_DIR)
+	@make $(NAME)
 
 $(NAME) : $(OBJS) $(INC)
-	$(CC) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-# $(CC) $(OBJS) -o $(NAME)
+	$(CC) $(OBJS) $(FRAMEWORK) -o $(NAME)
 
 %.o : %.c $(INC)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 clean :
 	rm -f $(OBJS)
+	make -C $(MLX_DIR) clean
 
 fclean : clean
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: junhylee <junhylee@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 22:19:35 by junhylee          #+#    #+#             */
-/*   Updated: 2024/01/25 22:01:19 by junhylee         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:15:48 by junhylee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 void	ft_write_pixel(t_data *img, t_coord coord)
 {
-	t_xyz **xyz;
-	int	i;
-	int	j;
+	t_xyz	**xyz;
+	int		i;
+	int		j;
 
 	xyz = coord.xyz_map;
 	i = 0;
+	if (coord.row == 1 && coord.col == 1)
+		write_dda(xyz[0][0], xyz[0][0], img, coord);
 	while (i < coord.row)
 	{
 		j = 0;
@@ -30,7 +32,7 @@ void	ft_write_pixel(t_data *img, t_coord coord)
 			if (i < coord.row - 1)
 				write_dda(xyz[i][j], xyz[i + 1][j], img, coord);
 			j++;
-		} 
+		}
 		i++;
 	}
 }
@@ -61,15 +63,17 @@ void	write_dda(t_xyz xyz, t_xyz next_xyz, t_data *img, t_coord coord)
 	put_x = dda.start_x + coord.offset_x;
 	put_y = dda.start_y + coord.offset_y;
 	if (!(put_x > coord.width - 1 || put_y > coord.height - 1
-		|| put_x < 0 || put_y < 0))
-		my_mlx_pixel_put(img, round(put_x), round(put_y), create_trgb(0, 255, 255, 255));
+			|| put_x < 0 || put_y < 0))
+		my_mlx_pixel_put(img, round(put_x), round(put_y),
+			create_trgb(0, 255, 255, 255));
 	while (i < dda.dis)
 	{
 		put_x = put_x + dda.inc_x;
 		put_y = put_y + dda.inc_y;
 		if (!(put_x > coord.width - 1 || put_y > coord.height - 1
-		|| put_x < 0 || put_y < 0))
-			my_mlx_pixel_put(img, round(put_x), round(put_y), create_trgb(0, 255, 255, 255));
+				|| put_x < 0 || put_y < 0))
+			my_mlx_pixel_put(img, round(put_x), round(put_y),
+				create_trgb(0, 255, 255, 255));
 		i++;
 	}
 }

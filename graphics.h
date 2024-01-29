@@ -9,7 +9,7 @@
 # include <errno.h>
 # include <math.h>
 # include "mlx.h"
-# include "./gnl/get_next_line.h"
+# include "./read/read_line.h"
 
 typedef struct s_dda
 {

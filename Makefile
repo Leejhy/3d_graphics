@@ -7,7 +7,7 @@ SRCS =	main.c main_utils.c init.c error.c \
 		rotation.c hook.c put_pixel.c \
 		./read/read_line.c ./read/read_line_utils.c
 OBJS = ${SRCS:.c=.o}
-NAME = fdf
+NAME = iso
 MLX_DIR = ./mlx
 
 all :

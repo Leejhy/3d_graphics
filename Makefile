@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 FRAMEWORK = -Lmlx -lmlx -framework OpenGL -framework AppKit
 INC = graphics.h
-SRCS =	main.c fdf_utils.c init.c error.c \
+SRCS =	main.c main_utils.c init.c error.c \
 		file_check.c parsing.c readmap.c readmap_utils.c \
 		rotation.c hook.c put_pixel.c \
 		./read/read_line.c ./read/read_line_utils.c
